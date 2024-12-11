@@ -1,0 +1,21 @@
+{
+  "files": {
+    "main.css": "/al-tarek-platform-v2/static/css/main.5ac2d6f7.css",
+    "main.js": "/al-tarek-platform-v2/static/js/main.c92cc72c.js",
+    "static/js/453.aa522692.chunk.js": "/al-tarek-platform-v2/static/js/453.aa522692.chunk.js",
+    "static/media/bg.png": "/al-tarek-platform-v2/static/media/bg.3b55416e926d51a05f75.3b55416e926d51a05f75.png",
+    "static/media/Untitled-1.png": "/al-tarek-platform-v2/static/media/Untitled-1.d80b0931021555220161.png",
+    "static/media/chemistry-sticker-05.png": "/al-tarek-platform-v2/static/media/chemistry-sticker-05.5fb371b7f64ac72b78c7.png",
+    "static/media/—Pngtree—atom icon_8473596.png": "/al-tarek-platform-v2/static/media/—Pngtree—atom icon_8473596.001ecfe0977a8a63854d.png",
+    "static/media/logo.png": "/al-tarek-platform-v2/static/media/logo.c7a161bc6354cc6bea16.png",
+    "static/media/profileIMG.svg": "/al-tarek-platform-v2/static/media/profileIMG.61cdbfda5df1f3fa049059523011efd8.svg",
+    "index.html": "/al-tarek-platform-v2/index.html",
+    "main.5ac2d6f7.css.map": "/al-tarek-platform-v2/static/css/main.5ac2d6f7.css.map",
+    "main.c92cc72c.js.map": "/al-tarek-platform-v2/static/js/main.c92cc72c.js.map",
+    "453.aa522692.chunk.js.map": "/al-tarek-platform-v2/static/js/453.aa522692.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.5ac2d6f7.css",
+    "static/js/main.c92cc72c.js"
+  ]
+}
