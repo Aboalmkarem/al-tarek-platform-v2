@@ -2,7 +2,7 @@ import axios from "axios";
 
 export function toLandingPage(navigate) {
     setTimeout(() => {
-        navigate("/al-tarek-platform");
+        navigate("/al-tarek-platform-v2");
         window.location.reload();
         return;
     }, 500);

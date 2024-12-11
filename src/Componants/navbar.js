@@ -57,7 +57,7 @@ const Navbar = ({ isChecked, handleChange }) => {
         <header className="nav">
             <div ref={messageRef}></div>
             <div className="left-icons">
-                <Link to="/al-tarek-platform">
+                <Link to="/al-tarek-platform-v2">
                     <img src={logo} alt="Logo" />
                 </Link>
                 <label className="grid cursor-pointer place-items-center">
@@ -126,7 +126,7 @@ const Navbar = ({ isChecked, handleChange }) => {
                                 </Link>
                                 <hr></hr>
                                 <p>اهلا {username}</p>
-                                <Link to="/al-tarek-platform/myProfile/favCourses">
+                                <Link to="/al-tarek-platform-v2/myProfile/favCourses">
                                     <li
                                         onClick={() => {
                                             setOpen(!open);
@@ -135,7 +135,7 @@ const Navbar = ({ isChecked, handleChange }) => {
                                         شحن كود السنتر
                                     </li>
                                 </Link>
-                                <Link to="/al-tarek-platform/myProfile/user">
+                                <Link to="/al-tarek-platform-v2/myProfile/user">
                                     <li
                                         onClick={() => {
                                             setOpen(!open);
@@ -163,12 +163,12 @@ const Navbar = ({ isChecked, handleChange }) => {
                     </>
                 ) : (
                     <>
-                        <Link to="/al-tarek-platform/authentcation/login">
+                        <Link to="/al-tarek-platform-v2/authentcation/login">
                             <button className="btn btn-ghost btn-xs sm:btn-sm md:btn-md lg:btn-lg">
                                 سجل دخول
                             </button>
                         </Link>
-                        <Link to="/al-tarek-platform/authentcation/signup">
+                        <Link to="/al-tarek-platform-v2/authentcation/signup">
                             <button className="btn btn-info btn-xs sm:btn-sm md:btn-md lg:btn-lg">
                                 انشئ حساب
                             </button>

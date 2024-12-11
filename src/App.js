@@ -29,26 +29,26 @@ function App() {
                 />
                 <Routes>
                     <Route
-                        path="/al-tarek-platform"
+                        path="/al-tarek-platform-v2"
                         element={<LandingPage />}
                     />
                     <Route
-                        path="/al-tarek-platform/authentcation/login"
+                        path="/al-tarek-platform-v2/authentcation/login"
                         element={<Authentication authToggle={false} />}
                     />
                     <Route
-                        path="/al-tarek-platform/authentcation/signup"
+                        path="/al-tarek-platform-v2/authentcation/signup"
                         element={<Authentication authToggle={true} />}
                     />
                     <Route
-                        path="/al-tarek-platform/courses/:categoryName"
+                        path="/al-tarek-platform-v2/courses/:categoryName"
                         element={<Courses/>}
                     />
                     <Route
-                        path="/al-tarek-platform/courses/:categoryName/course/:id"
+                        path="/al-tarek-platform-v2/courses/:categoryName/course/:id"
                         element={<Course></Course>}
                     />
-                    <Route path="/al-tarek-platform/myProfile/*" element={<Profile></Profile>}>
+                    <Route path="/al-tarek-platform-v2/myProfile/*" element={<Profile></Profile>}>
                         <Route path="user" element={<User></User>}></Route>
                         <Route
                             path="favCourses"
