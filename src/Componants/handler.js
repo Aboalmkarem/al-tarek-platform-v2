@@ -23,7 +23,7 @@ export async function getUser() {
     };
     return await axios
         .get(
-            `${import.meta.env.REACT_APP_NOT_SECRET_CODE}/api/users/me`,
+            `${import.meta.env.VITE_BACKEND_URL}/api/users/me`,
             reqOptions
         )
 }
