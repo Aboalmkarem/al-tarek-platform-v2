@@ -4,15 +4,12 @@ import { useEffect, useRef, useState } from "react";
 import { FaUser } from "react-icons/fa";
 import { getUser, signOut } from "./handler";
 import { useNavigate } from "react-router";
-import Message from "./message";
-import { createRoot } from "react-dom/client";
-
+import useMessages from './context/messageContext'
 const Navbar = ({ isChecked, handleChange }) => {
     const navigate = useNavigate();
     const [open, setOpen] = useState(false);
     let drop = useRef();
-    let messageRef = useRef();
-    const rootRef = useRef(null); // Ref to store the root instance
+    const {addMessage} = useMessages()
     const [username, setUserName] = useState(null);
     const [isAutherized, setIsAuthenticated] = useState(
         localStorage.getItem("token") ? true : false
@@ -29,7 +26,7 @@ const Navbar = ({ isChecked, handleChange }) => {
                         setIsAuthenticated(false);
                     }
                     if (err.response === undefined) {
-                        showMessage(true, `Error: ${err.message}`);
+                        addMessage('error', `Error: ${err.message}`);
                     }
                 });
             let handleClickOutside = (e) => {
@@ -44,18 +41,10 @@ const Navbar = ({ isChecked, handleChange }) => {
         }
     });
 
-    function showMessage(isErr, message) {
-        if (!rootRef.current) {
-            rootRef.current = createRoot(messageRef.current);
-        }
-        rootRef.current.render(
-            <Message options={{ isErr: isErr, message: message }} />
-        );
-    }
+    
 
     return (
         <header className="nav">
-            <div ref={messageRef}></div>
             <div className="left-icons">
                 <Link to="/al-tarek-platform-v2">
                     <img src={logo} alt="Logo" />
@@ -147,8 +136,8 @@ const Navbar = ({ isChecked, handleChange }) => {
                                 <Link to="#">
                                     <li
                                         onClick={() => {
-                                            showMessage(
-                                                false,
+                                            addMessage(
+                                                'success',
                                                 "sign out successfully"
                                             );
                                             setOpen(!open);

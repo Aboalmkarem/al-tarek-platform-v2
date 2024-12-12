@@ -6,25 +6,15 @@ import { useRef, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router";
 import { toLandingPage } from "./handler";
-import { createRoot } from "react-dom/client";
-import Message from "./message";
+import useMessages from "./context/messageContext";
 
 const Authentcation = ({ authToggle }) => {
     const navigate = useNavigate();
     const [isAutherized, setIsAuthenticated] = useState(
         localStorage.getItem("token") ? true : false
     );
-    const messageRef = useRef()
-    const rootRef = useRef(null); // Ref to store the root instance
 
-    function showMessage(isErr, message) {
-        if (!rootRef.current) {
-            rootRef.current = createRoot(messageRef.current);
-        }
-        rootRef.current.render(
-            <Message options={{isErr: isErr, message: message}} />
-        );
-    }
+    const {addMessage} = useMessages()
 
     async function makeRequest(endPoint, reqOptions) {
         axios
@@ -36,32 +26,32 @@ const Authentcation = ({ authToggle }) => {
             .then((res) => {
                 
                 if (res.data.jwt && res.data.user) {
-                    showMessage(false, `successfull registration`)
+                    addMessage('success', `successfull registration`)
                     localStorage.setItem("token", res.data.jwt);
                     setIsAuthenticated(true);
                     toLandingPage(navigate);
                 }
             })
             .catch((err) => {
-                console.log(err);
+                // console.log(err);
                 if (err.response?.data?.error?.message !== undefined) {
-                    showMessage(true, `Error: ${err.response?.data?.error?.message}`)
+                    addMessage('error', `Error: ${err.response?.data?.error?.message}`)
                 } else {
-                    showMessage(true, `Error: ${err.message}`)
+                    addMessage('error', `Error: ${err.message}`)
                 }
             });
     }
 
     async function authorizate(endPoint, event) {
         if (isAutherized) {
-            showMessage(true, "You already logged in")
+            addMessage('error', "You already logged in")
             toLandingPage(navigate);
         }
         event.preventDefault();
         const formData = new FormData(event.target);
         const jsonData = Object.fromEntries(formData);
         if (endPoint === 'local/register' && jsonData.password !== jsonData.confirmPassword) {
-            showMessage(true, `Passwords do not match`)
+            addMessage('error', `Passwords do not match`)
             return;
         }
         const reqBody = JSON.stringify(jsonData)
@@ -71,7 +61,6 @@ const Authentcation = ({ authToggle }) => {
     const authToggleRef = useRef();
     return (
         <div className="authentcation">
-            <div ref={messageRef}></div>
             <div className="section">
                 <div className="container">
                     <div className="row full-height justify-content-center">

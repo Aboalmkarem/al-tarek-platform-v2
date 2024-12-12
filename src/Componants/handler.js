@@ -37,5 +37,4 @@ export function formatDate(date) {
         weekday: "long"
     };
     return date.toLocaleDateString("ar-EG", dateOptions)
-    
 }

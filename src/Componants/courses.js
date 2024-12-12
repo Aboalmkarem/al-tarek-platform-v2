@@ -1,11 +1,10 @@
 import { Link } from "react-router-dom";
 import "./courses.css";
 import Card from "./card";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
-import { createRoot } from "react-dom/client";
-import Message from "./message";
 import StaticCard from "./static/staticCard";
+import useMessages from './context/messageContext'
 
 const Courses = () => {
     const [empty, setEmpty] = useState({
@@ -17,17 +16,8 @@ const Courses = () => {
         message: ''
     });
     const [courses, setCourses] = useState(false);
-    const messageRef = useRef();
-    const rootRef = useRef(null); // Ref to store the root instance
 
-    function showMessage(isErr, message) {
-        if (!rootRef.current) {
-            rootRef.current = createRoot(messageRef.current);
-        }
-        rootRef.current.render(
-            <Message options={{ isErr: isErr, message: message }} />
-        );
-    }
+    const {addMessage} = useMessages()
 
     async function getCourses() {
         const reqOptions = {
@@ -61,8 +51,8 @@ const Courses = () => {
                     error.response?.status === 401 &&
                     error.response?.statusText === "Unauthorized"
                 ) {
-                    showMessage(
-                        true,
+                    addMessage(
+                        'error',
                         `Error: you must be logged in. please login first`
                     );
                     setErr({
@@ -71,7 +61,7 @@ const Courses = () => {
                     });
                 }
                 if (error.response?.status === undefined) {
-                    showMessage(true, `Error: ${error.message}`);
+                    addMessage('error', `Error: ${error.message}`);
                     setErr({
                         isError: true,
                         message: `${error.message}. please try again later`
@@ -87,7 +77,6 @@ const Courses = () => {
 
     return (
         <div className="courses-file">
-            <div ref={messageRef}></div>
             <h2 className="homeh" id="mainh">
                 {window.location.pathname.split("/courses/")[1]}
             </h2>
@@ -115,7 +104,7 @@ const Courses = () => {
             <hr id="hr2"></hr>
             <div className="to-account">
                 <h6>اعرف تفاصيل اكتر عن حسابك</h6>
-                <Link to="/myProfile/user">
+                <Link to="/al-tarek-platform-v2/myProfile/user">
                     <button>ملفك الشخصي</button>
                 </Link>
             </div>

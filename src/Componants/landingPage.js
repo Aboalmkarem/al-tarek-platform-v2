@@ -1,12 +1,11 @@
 import background from "../Assets/Untitled-1.png";
 import icon from "../Assets/chemistry-sticker-05.png";
 import atom from "../Assets/—Pngtree—atom icon_8473596.png";
-import { useEffect, useRef, useState } from "react";
-import { createRoot } from "react-dom/client";
+import { useEffect, useState } from "react";
 import Card from "./card";
 import axios from "axios";
-import Message from "./message";
 import StaticCard from "./static/staticCard";
+import useMessages from "./context/messageContext";
 
 const LandingPage = () => {
     const [empty, setEmpty] = useState({
@@ -18,17 +17,7 @@ const LandingPage = () => {
         message: ''
     });
     const [categories, setCategories] = useState(false);
-    const messageRef = useRef();
-    const rootRef = useRef(null); // Ref to store the root instance
-
-    function showMessage(isErr, message) {
-        if (!rootRef.current) {
-            rootRef.current = createRoot(messageRef.current);
-        }
-        rootRef.current.render(
-            <Message options={{ isErr: isErr, message: message }} />
-        );
-    }
+    const {addMessage} = useMessages()
 
     async function getCategories() {
         const reqOptions = {
@@ -57,8 +46,8 @@ const LandingPage = () => {
                     error.response?.status === 401 &&
                     error.response?.statusText === "Unauthorized"
                 ) {
-                    showMessage(
-                        true,
+                    addMessage(
+                        'error',
                         `Error: you must be logged in. please login first`
                     );
                     setErr({
@@ -67,7 +56,7 @@ const LandingPage = () => {
                     });
                 }
                 if (error.response?.status === undefined) {
-                    showMessage(true, `Error: ${error.message}`);
+                    addMessage('error', `Error: ${error.message}`);
                     setErr({
                         isError: true,
                         message: `${error.message}. please try again later`
@@ -83,7 +72,6 @@ const LandingPage = () => {
 
     return (
         <div className="landing-page">
-            <div ref={messageRef}></div>
             <div className="main">
                 <img className="atom" src={atom} alt="Atom Icon" />
                 <div className="main-img">

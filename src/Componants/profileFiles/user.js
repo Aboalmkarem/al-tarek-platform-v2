@@ -4,8 +4,9 @@ import { useEffect, useState } from "react";
 import { getUser } from "../handler";
 import { MdOutlineLock } from "react-icons/md";
 import axios from "axios";
+import useMessages from "../context/messageContext";
 
-const User = ({ showMessage }) => {
+const User = () => {
     const [isAutherized, setIsAuthenticated] = useState(
         localStorage.getItem("token") ? true : false
     );
@@ -14,6 +15,7 @@ const User = ({ showMessage }) => {
         email: "",
     });
     const [isChangingPassword, setIsChangingPassword] = useState(false)
+    const {addMessage} = useMessages()
 
     useEffect(() => {
         if (isAutherized) {
@@ -30,7 +32,7 @@ const User = ({ showMessage }) => {
                     }
                     if (err.response === undefined) {
                         console.log(err.message);
-                        showMessage(true, `Error: ${err.message}`);
+                        addMessage('error', `Error: ${err.message}`);
                     }
                 });
         }
@@ -48,7 +50,7 @@ const User = ({ showMessage }) => {
             .then((res) => {
                 
                 if (res.data.jwt && res.data.user) {
-                    showMessage(false, `successfull changing password`)
+                    addMessage('success', `successfull changing password`)
                     localStorage.setItem("token", res.data.jwt);
                     setIsAuthenticated(true);
                     setIsChangingPassword(!isChangingPassword)
@@ -57,9 +59,9 @@ const User = ({ showMessage }) => {
             .catch((err) => {
                 console.log(err);
                 if (err.response?.data?.error?.message !== undefined) {
-                    showMessage(true, `Error: ${err.response?.data?.error?.message}`)
+                    addMessage('error', `Error: ${err.response?.data?.error?.message}`)
                 } else {
-                    showMessage(true, `Error: ${err.message}`)
+                    addMessage('error', `Error: ${err.message}`)
                 }
             });
     }
@@ -69,7 +71,7 @@ const User = ({ showMessage }) => {
         const formData = new FormData(event.target);
         const jsonData = Object.fromEntries(formData);
         if ( jsonData.password !== jsonData.passwordConfirmation) {
-            showMessage(true, `Passwords do not match`)
+            addMessage('error', `Passwords do not match`)
             return;
         }
         const reqBody = JSON.stringify(jsonData)

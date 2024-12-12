@@ -1,9 +1,8 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
-import Message from "./message";
-import { createRoot } from "react-dom/client";
 import { formatDate } from "./handler";
 import StaticCourse from "./static/staticCourse";
+import useMessages from "./context/messageContext";
 
 const Course = () => {
     const [empty, setEmpty] = useState({
@@ -16,8 +15,6 @@ const Course = () => {
     });
     const [isShowVideo, setIsShowVideo] = useState(false);
     const [course, setCourse] = useState();
-    const messageRef = useRef();
-    const rootRef = useRef(null); // Ref to store the root instance
 
     function showVideo() {
         if (!isShowVideo) {
@@ -28,14 +25,7 @@ const Course = () => {
         }
     }
 
-    function showMessage(isErr, message) {
-        if (!rootRef.current) {
-            rootRef.current = createRoot(messageRef.current);
-        }
-        rootRef.current.render(
-            <Message options={{ isErr: isErr, message: message }} />
-        );
-    }
+    const {addMessage} = useMessages()
 
     async function getCourse() {
         const reqOptions = {
@@ -64,8 +54,8 @@ const Course = () => {
                     error.response?.status === 401 &&
                     error.response?.statusText === "Unauthorized"
                 ) {
-                    showMessage(
-                        true,
+                    addMessage(
+                        'error',
                         `Error: you must be logged in. please login first`
                     );
                     setErr({
@@ -74,7 +64,7 @@ const Course = () => {
                     });
                 }
                 if (error.response?.status === undefined) {
-                    showMessage(true, `Error: ${error.message}`);
+                    addMessage('error', `Error: ${error.message}`);
                     setErr({
                         isErr: true,
                         message: `${error.message}. please try again later`,
@@ -90,7 +80,6 @@ const Course = () => {
 
     return (
         <>
-            <div ref={messageRef}></div>
             <div className="course-page">
                 {course ? (
                     <div className="flex flex-col justify-between h-full w-full relative min-h-screen">
