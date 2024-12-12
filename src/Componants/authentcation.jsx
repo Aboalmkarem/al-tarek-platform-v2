@@ -18,7 +18,7 @@ const Authentcation = ({ authToggle }) => {
 
     async function makeRequest(endPoint, reqOptions) {
         axios
-            .post(`${process.env.REACT_APP_NOT_SECRET_CODE}/api/auth/${endPoint}`, reqOptions, {
+            .post(`${import.meta.env.REACT_APP_NOT_SECRET_CODE}/api/auth/${endPoint}`, reqOptions, {
                 headers: {
                     "Content-Type": "application/json",
                 },
