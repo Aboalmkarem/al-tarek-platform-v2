@@ -36,7 +36,7 @@ const Course = () => {
         };
         axios
             .get(
-                `${process.env.REACT_APP_NOT_SECRET_CODE}/api/courses/${
+                `${import.meta.env.REACT_APP_NOT_SECRET_CODE}/api/courses/${
                     window.location.pathname.split("/course/")[1]
                 }?populate=*`,
                 reqOptions
@@ -133,7 +133,7 @@ const Course = () => {
                                                 </div>
                                                 <div className="w-full max-w-4xl mx-auto rounded-2xl shadow-large overflow-hidden border border-secondary-container smooth clr-text-primary">
                                                     <video
-                                                        src={`${process.env.REACT_APP_NOT_SECRET_CODE}${course.courseVideo.data[0].attributes.url}`}
+                                                        src={`${import.meta.env.REACT_APP_NOT_SECRET_CODE}${course.courseVideo.data[0].attributes.url}`}
                                                         controls={true}
                                                     ></video>
                                                 </div>
@@ -145,7 +145,7 @@ const Course = () => {
                                                         <div className="p-4 space-y-8">
                                                             <div className="overflow-hidden rounded-md">
                                                                 <img
-                                                                    src={`${process.env.REACT_APP_NOT_SECRET_CODE}${course.courseCoverIMG.data.attributes.url}`}
+                                                                    src={`${import.meta.env.REACT_APP_NOT_SECRET_CODE}${course.courseCoverIMG.data.attributes.url}`}
                                                                     alt="img"
                                                                 ></img>
                                                             </div>
@@ -160,7 +160,7 @@ const Course = () => {
                                                     <div className="space-y-5">
                                                         <div className="rounded-2xl shadow-2xl overflow-hidden">
                                                             <img
-                                                                src={`${process.env.REACT_APP_NOT_SECRET_CODE}${course.courseCoverIMG.data.attributes.url}`}
+                                                                src={`${import.meta.env.REACT_APP_NOT_SECRET_CODE}${course.courseCoverIMG.data.attributes.url}`}
                                                                 alt="img"
                                                             ></img>
                                                         </div>

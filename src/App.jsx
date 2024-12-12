@@ -13,7 +13,7 @@ import FavCourses from "./Componants/profileFiles/favCourses";
 import Course from "./Componants/course";
 import MessagePopup from "./Componants/messagePopup";
 import {MessageContext} from "./Componants/context/messageContext";
-import React, { createRef, useState } from "react";
+import { createRef, useState } from "react";
 function App() {
 
     const [messages, setMessages] = useState([]);
@@ -80,6 +80,7 @@ function App() {
                     />
                     <Routes>
                         <Route
+                            index
                             path="/al-tarek-platform-v2"
                             element={<LandingPage />}
                         />
@@ -114,7 +115,7 @@ function App() {
                 </MessageContext.Provider>
             </BrowserRouter>
         </div>
-    );
+    )
 }
 
 export default App;

@@ -41,7 +41,7 @@ const User = () => {
 
     async function makeRequest(reqOptions) {
         axios
-            .post(`${process.env.REACT_APP_NOT_SECRET_CODE}/api/auth/change-password`, reqOptions, {
+            .post(`${import.meta.env.REACT_APP_NOT_SECRET_CODE}/api/auth/change-password`, reqOptions, {
                 headers: {
                     "Content-Type": "application/json",
                     Authorization: `Bearer ${localStorage.getItem("token")}`,
