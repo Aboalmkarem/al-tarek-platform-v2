@@ -29,7 +29,7 @@ const Courses = () => {
         await axios
             .get(
                 `${
-                    process.env.REACT_APP_NOT_SECRET_CODE
+                    import.meta.env.VITE_BACKEND_URL
                 }/api/courses?populate=*&filters[category][name][$eq]=${
                     window.location.pathname.split("/courses/")[1]
                 }`,
@@ -87,7 +87,7 @@ const Courses = () => {
                             <Card
                                 key={course.id}
                                 link={`course/${course.id}`}
-                                img={`${process.env.REACT_APP_NOT_SECRET_CODE}${course.attributes.courseCoverIMG.data.attributes.url}`}
+                                img={`${import.meta.env.VITE_BACKEND_URL}${course.attributes.courseCoverIMG.data.attributes.url}`}
                                 class="card"
                                 name={course.attributes.title}
                                 info={course.attributes.discription}

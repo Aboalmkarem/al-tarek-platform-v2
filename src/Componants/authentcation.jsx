@@ -18,13 +18,12 @@ const Authentcation = ({ authToggle }) => {
 
     async function makeRequest(endPoint, reqOptions) {
         axios
-            .post(`${import.meta.env.REACT_APP_NOT_SECRET_CODE}/api/auth/${endPoint}`, reqOptions, {
+            .post(`${import.meta.env.VITE_BACKEND_URL}/api/auth/${endPoint}`, reqOptions, {
                 headers: {
                     "Content-Type": "application/json",
                 },
             })
             .then((res) => {
-                
                 if (res.data.jwt && res.data.user) {
                     addMessage('success', `successfull registration`)
                     localStorage.setItem("token", res.data.jwt);

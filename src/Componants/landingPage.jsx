@@ -27,7 +27,7 @@ const LandingPage = () => {
         };
         await axios
             .get(
-                `${import.meta.env.REACT_APP_NOT_SECRET_CODE}/api/categories?populate=*`,
+                `${import.meta.env.VITE_BACKEND_URL}/api/categories?populate=*`,
                 reqOptions
             )
             .then((res) => {
@@ -109,7 +109,7 @@ const LandingPage = () => {
                                 <Card
                                     key={category.id}
                                     link={`courses/${category.attributes.name}`}
-                                    img={`${import.meta.env.REACT_APP_NOT_SECRET_CODE}${category.attributes.coverIMG.data.attributes.url}`}
+                                    img={`${import.meta.env.VITE_BACKEND_URL}${category.attributes.coverIMG.data.attributes.url}`}
                                     class="card"
                                     name={category.attributes.title}
                                     info={category.attributes.discription}
