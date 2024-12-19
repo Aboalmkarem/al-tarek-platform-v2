@@ -111,8 +111,8 @@ const Course = () => {
                                             </>
                                         ) : (
                                             <div className="flex flex-col md:flex-row-reverse space-y-10 md:space-y-0 md:space-x-10">
-                                                <div className=" md:basis-1/3 relative -mt-52">
-                                                    <div className="w-full glass smooth clr-text-primary shadow-large rounded-lg overflow-hidden">
+                                                <div className="md:basis-1/3 relative -mt-52">
+                                                    <div className="shadow-2xl border border-gray-200 dark:border-gray-800 w-full glass smooth shadow-large rounded-lg overflow-hidden">
                                                         <div className="p-4 space-y-8">
                                                             <div className="overflow-hidden rounded-md">
                                                                 <img
@@ -130,7 +130,7 @@ const Course = () => {
                                                                     alt="img"
                                                                 ></img>
                                                             </div>
-                                                            <button className="  border-2 smooth false w-full inline-block text-center bg-rose-500 border-rose-500 dark:bg-rose-500 dark:border-rose-500 hover:bg-opacity-0 dark:hover:bg-opacity-0 dark:bg-opacity-100 bg-opacity-100 hover:text-rose-500 dark:hover:text-rose-500 clr-white rounded-md  px-4 py-2 ">
+                                                            <button className="border-2 smooth w-full inline-block text-center bg-rose-500 border-rose-500 dark:bg-rose-500 dark:border-rose-500 hover:bg-opacity-0 dark:hover:bg-opacity-0 dark:bg-opacity-100 bg-opacity-100 hover:text-rose-500 dark:hover:text-rose-500 text-white rounded-md px-4 py-2 ">
                                                                 هذا الكورس
                                                                 مجاني!
                                                             </button>
@@ -156,9 +156,9 @@ const Course = () => {
                                                             ></img>
                                                         </div>
                                                         <div>
-                                                            <div className="py-16 px-10 rounded-md shadow-small border border-secondary-container smooth clr-text-primary bg-gray-900 space-y-12">
+                                                            <div className="py-16 px-10 rounded-md shadow-xl border border-gray-200 dark:border-gray-800 smooth bg-white dark:bg-gray-900 space-y-12">
                                                                 <div className="space-y-8">
-                                                                    <div className="font-bold clr-text-primary text-3xl">
+                                                                    <div className="font-bold text-3xl">
                                                                         {
                                                                             course.title
                                                                         }
@@ -176,11 +176,11 @@ const Course = () => {
                                             </div>
                                         )}
                                     </div>
-                                    <div className="rounded-2xl shadow-2xl w-full relative overflow-hidden bg-gray-200 dark:bg-gray-900 smooth">
+                                    <div className="rounded-2xl shadow-2xl w-full relative overflow-hidden shadow-xl border border-gray-200 dark:border-gray-800 bg-gray-200 dark:bg-gray-900 smooth">
                                         <div className="py-10 px-5 sm:px-10">
                                             <div className="smooth space-y-6">
                                                 <div className="font-bold clr-text-primary py-5 text-5xl">
-                                                    <span>محتوي </span>
+                                                    <span>محتوى </span>
                                                     <span className="text-blue-500 smooth">
                                                         الكورس
                                                     </span>
@@ -233,7 +233,7 @@ const Course = () => {
 export default Course;
 const Collapse = ({ onClickFunction, title, type, info }) => {
     return (
-        <div className="collapse collapse-arrow bg-base-200">
+        <div className="collapse collapse-arrow bg-white dark:bg-[#080C14]">
             <input type="checkbox" />
             <div className="collapse-title text-xl font-medium">
                 <div className="flex justify-between items-center sm:px-2">

@@ -27,7 +27,7 @@ export default function StaticCard({ err, empty }) {
                                 fill="currentColor"
                             ></path>
                         </svg>
-                        <span className="block sm:inline">{err.message}</span>
+                        <span className="text-lg md:text-2xl block sm:inline">{err.message}</span>
                     </div>
                 </div>
             ) : empty.isEmpty ? (
@@ -56,11 +56,11 @@ export default function StaticCard({ err, empty }) {
                                 fill="currentColor"
                             ></path>
                         </svg>
-                        <span className="block sm:inline">{empty.message}</span>
+                        <span className="text-lg md:text-2xl block sm:inline">{empty.message}</span>
                     </div>
                 </div>
             ) : (
-                <div className="g-teal-400 smooth clr-text-primary drk:bg-teal-800 bg-opacity-50 dark:bg-opacity-50 grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-10">
+                <div className="smooth grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-10">
                     <div className="group flex flex-col w-5/6 mx-auto">
                         <div className="animate-pulse">
                             <div className="bg-slate-700 h-48 w-full"></div>

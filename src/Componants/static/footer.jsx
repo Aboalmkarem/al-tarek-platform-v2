@@ -1,12 +1,10 @@
-import logo from '../../Assets/logo.png'
+import logo from "../../Assets/logo.png";
 
 const Footer = () => {
     return (
-        <div>
-            <div className='space'></div>
-            <footer className="footer bg-neutral text-neutral-content p-10">
+        <footer className="footer bg-neutral text-neutral-content p-10">
             <aside>
-                <img src={logo} alt='img'></img>
+                <img src={logo} alt="img"></img>
                 <p>
                     Al-Tarek Platform.
                     <br />
@@ -52,9 +50,6 @@ const Footer = () => {
                 </div>
             </nav>
         </footer>
-
-        </div>
-        
     );
 };
 

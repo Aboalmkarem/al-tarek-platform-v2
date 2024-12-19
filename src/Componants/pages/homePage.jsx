@@ -14,7 +14,7 @@ const HomePage = () => {
     );
 
     return (
-        <div className="w-full min-h-[100vh]">
+        <div className="w-full min-h-max">
             {isAutherized ? <Home /> : <LandingPage />}
         </div>
     );
@@ -24,7 +24,7 @@ export default HomePage;
 const LandingPage = () => {
     return (
         <div className="flex flex-col text-3xl">
-            <section className="min-h-max w-full grow-1">
+            <section className="min-h-max py-3 w-full grow-1">
                 <div className="flex flex-col sm:flex-row gap-5 sm:gap-0 justify-center items-center min-h-svh px-3 grow-1">
                     <div className="px-2 h-96 flex flex-col justify-center items-center sm:block sm:h-auto">
                         <h2 className="md:text-7xl text-4xl pb-5 text-nowrap">
@@ -50,11 +50,11 @@ const LandingPage = () => {
                     </div>
                 </div>
             </section>
-            <section className="min-h-max w-full grow-1 px-4 py-4 bg-sky-500 rounded-l-[10rem]">
-                <div className="flex flex-col md:flex-row md:justify-between md:items-center md:items-[none]">
+            <section className="min-h-max w-full grow-1 px-2 py-2 my-2 bg-sky-500 rounded-l-[10rem]">
+                <div className="flex flex-col md:flex-row md:justify-between md:items-center">
                     <div className="md:w-1/2 font-bold pr-10 grow order-last md:order-frist">
                         <div className="flex flex-col h-full md:justify-between py-10 gap-10">
-                            <div className="text-nowrap text-white text-4xl md:text-[6rem] md:px-4 py-4 md:leading-[8rem]">
+                            <div className="w-full text-nowrap text-white text-4xl md:text-[3rem] md:px-4 py-4 md:leading-[8rem]">
                                 <span>ذاكر في اي وقت </span>
                                 <br />
                                 <span>
@@ -80,15 +80,15 @@ const LandingPage = () => {
                 </div>
             </section>
             <Categories />
-            <section className="min-h-max w-full grow-1">
-                <div className="flex flex-col sm:flex-row gap-5 sm:gap-0 justify-center items-center min-h-svh px-3 grow-1">
+            <section className="min-h-max py-2 w-full grow-1">
+                <div className="flex flex-col sm:flex-row gap-5 sm:gap-0 justify-center items-center min-h-lvh px-3 grow-1">
                     <div className="px-2 h-96 font-black flex flex-col justify-center items-center sm:block sm:h-auto order-last">
                         <h2 className="md:text-7xl text-4xl pb-5">
                             <span className="md:text-8xl text-5xl text-sky-500">
                                 وبعدين
                             </span>
                         </h2>
-                        <p className="text-xl md:text-2xl w-96">
+                        <p className="text-xl md:text-2xl max-w-96">
                             تيم الاسطورة كبر عشانك وبقي معاك علي مدار اليوم خطوة
                             بخطوة علشان توصل لحلمك ... ملكش حجة
                         </p>
@@ -128,7 +128,7 @@ const Home = () => {
                     </div>
                     <div className="px-2 lg:px-4 sm:px-10  space-y-10 py-8">
                         {courses ? (
-                            <div className="g-teal-400 smooth clr-text-primary drk:bg-teal-800 bg-opacity-50 dark:bg-opacity-50 grid  grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-10">
+                            <div className="smooth grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-10">
                                 {courses.map((course) => {
                                     return (
                                         <Card
@@ -181,11 +181,11 @@ const Home = () => {
                 <div className="px-2 lg:px-4 sm:px-10 pb-10 space-y-10 py-8">
                     <div className="text-center mb-8 flex justify-center items-center flex-col space-y-5">
                         <div className="flex flex-col gap-5 justify-center items-center w-full max-w h-fit">
-                            <div className="font-bold text-4xl sm:text-5xl text-center">
+                            <div className="font-bold text-3xl sm:text-5xl text-center">
                                 كورساتنا{" "}
                                 <span className="text-sky-500">المقترحة</span>
                             </div>
-                            <div className="underline-svg w-[340px] sm:w-[400px] inline-block">
+                            <div className="underline-svg w-1/2 px-5 sm:px-0 sm:w-[400px] inline-block">
                                 <svg
                                     className="w-full h-full "
                                     viewBox="0 0 407 49"
@@ -307,11 +307,11 @@ const Categories = () => {
             <div className="px-2 lg:px-4 sm:px-10 pb-10 space-y-10 py-8">
                 <div className="text-center mb-8 flex justify-center items-center flex-col space-y-5">
                     <div className="flex flex-col gap-5 justify-center items-center w-full max-w h-fit">
-                        <div className="font-bold text-4xl sm:text-5xl text-center">
+                        <div className="font-bold text-3xl sm:text-5xl text-center">
                             السنين{" "}
                             <span className="text-sky-500">الدراسية</span>
                         </div>
-                        <div className="underline-svg w-[340px] sm:w-[400px] inline-block">
+                        <div className="underline-svg w-1/2 px-5 sm:px-0 sm:w-[400px] inline-block">
                             <svg
                                 className="w-full h-full "
                                 viewBox="0 0 407 49"
@@ -328,9 +328,9 @@ const Categories = () => {
                         </div>
                     </div>
                 </div>
-                <div className="px-2 lg:px-4 sm:px-10  space-y-10 py-8">
+                <div className="px-2 lg:px-4 sm:px-10 space-y-10 py-8">
                     {categories ? (
-                        <div className="g-teal-400 smooth clr-text-primary drk:bg-teal-800 bg-opacity-50 dark:bg-opacity-50 grid  grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-10">
+                        <div className="smooth grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-10">
                             {categories.map((category) => {
                                 return (
                                     <CategoryCard

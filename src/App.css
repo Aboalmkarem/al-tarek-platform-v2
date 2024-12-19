@@ -14,6 +14,6 @@
     background-color: #11baf0;
     border-radius: .4rem;
 }
-.transition-transforms-shadows{
-    transition: transform 500ms ease-in-out, box-shadow 500ms ease-in-out;
+.transition-transforms-shadows-filters{
+    transition: transform 500ms ease-in-out, box-shadow 500ms ease-in-out, filter 500ms ease-in-out
 }

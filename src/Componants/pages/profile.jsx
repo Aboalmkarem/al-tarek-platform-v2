@@ -25,7 +25,7 @@ const Profile = () => {
                                         <div className="flex flex-col w-full h-full">
                                             <div className="w-full h-max py-6">
                                                 <div className="flex gap-4 items-center w-max pl-8 mx-auto rounded-full border-2 border-gray-200 dark:border-gray-600 leading-relaxed">
-                                                    <span className="bg-sky-300 px-8 py-4 rounded-full border-2 border-sky-200">
+                                                    <span className="bg-sky-400 px-8 py-4 rounded-full border-2 border-sky-300">
                                                         <FaUser color="white"></FaUser>
                                                     </span>
                                                     <h2 className="dark:text-white text-black text-2xl font-bold">
