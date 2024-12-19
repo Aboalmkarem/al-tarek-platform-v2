@@ -1,12 +1,12 @@
-import "./authentcation.css";
+import "../authentcation.css";
 // import 'bootstrap/dist/css/bootstrap.min.css';
 import { MdOutlineLock, MdOutlineAlternateEmail } from "react-icons/md";
 import { FaUser } from "react-icons/fa";
 import { useRef, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router";
-import { toLandingPage } from "./handler";
-import useMessages from "./context/messageContext";
+import { toLandingPage } from "../utils/handler";
+import useMessages from "../context/messageContext";
 
 const Authentcation = ({ authToggle }) => {
     const navigate = useNavigate();

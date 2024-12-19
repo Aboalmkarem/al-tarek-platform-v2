@@ -2,9 +2,8 @@ export default function StaticCard({ err, empty }) {
     return (
         <>
             {err.isError ? (
-                <div className="-mt-28">
-                    <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded w-max mx-auto my-4 flex gap-2">
-                        <span className="block sm:inline">{err.message}</span>
+                <div>
+                    <div className="bg-red-100 dark:bg-red-900 border border-red-400 dark:border-red-600 text-red-700 dark:text-red-100 px-4 py-3 rounded w-max mx-auto my-4 flex items-center gap-2">
                         <svg
                             width="24"
                             height="24"
@@ -28,12 +27,12 @@ export default function StaticCard({ err, empty }) {
                                 fill="currentColor"
                             ></path>
                         </svg>
+                        <span className="block sm:inline">{err.message}</span>
                     </div>
                 </div>
             ) : empty.isEmpty ? (
-                <div className="-mt-28">
-                    <div className="bg-gray-100 border border-gray-400 text-gray-700 px-4 py-3 rounded relative max-w-md mx-auto my-4 flex gap-2">
-                        <span className="block sm:inline">{empty.message}</span>
+                <div>
+                    <div className="bg-gray-100 dark:bg-gray-900 border border-gray-400 dark:border-gray-600 text-gray-700 dark:text-gray-100 px-4 py-3 rounded w-max mx-auto my-4 flex items-center gap-2">
                         <svg
                             width="24"
                             height="24"
@@ -57,11 +56,12 @@ export default function StaticCard({ err, empty }) {
                                 fill="currentColor"
                             ></path>
                         </svg>
+                        <span className="block sm:inline">{empty.message}</span>
                     </div>
                 </div>
             ) : (
-                <div className="cards">
-                    <div className="card h-24 border border-blue-300 shadow rounded-md p-4 max-w-sm w-full mx-auto">
+                <div className="g-teal-400 smooth clr-text-primary drk:bg-teal-800 bg-opacity-50 dark:bg-opacity-50 grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-10">
+                    <div className="group flex flex-col w-5/6 mx-auto">
                         <div className="animate-pulse">
                             <div className="bg-slate-700 h-48 w-full"></div>
                             <div className="flex-1 space-y-8 py-1 pt-6">
@@ -100,7 +100,7 @@ export default function StaticCard({ err, empty }) {
                             </div>
                         </div>
                     </div>
-                    <div className="card h-24 border border-blue-300 shadow rounded-md p-4 max-w-sm w-full mx-auto">
+                    <div className="group flex flex-col w-5/6 mx-auto">
                         <div className="animate-pulse">
                             <div className="bg-slate-700 h-48 w-full"></div>
                             <div className="flex-1 space-y-8 py-1 pt-6">
@@ -139,7 +139,7 @@ export default function StaticCard({ err, empty }) {
                             </div>
                         </div>
                     </div>
-                    <div className="card h-24 border border-blue-300 shadow rounded-md p-4 max-w-sm w-full mx-auto">
+                    <div className="group flex flex-col w-5/6 mx-auto">
                         <div className="animate-pulse">
                             <div className="bg-slate-700 h-48 w-full"></div>
                             <div className="flex-1 space-y-8 py-1 pt-6">

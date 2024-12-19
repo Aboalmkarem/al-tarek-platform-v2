@@ -1,4 +1,5 @@
 import axios from "axios";
+// import { useEffect } from "react";
 
 export function toLandingPage(navigate) {
     setTimeout(() => {

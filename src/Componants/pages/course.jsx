@@ -1,17 +1,17 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { formatDate } from "./handler";
-import StaticCourse from "./static/staticCourse";
-import useMessages from "./context/messageContext";
+import StaticCourse from "../static/staticCourse";
+import useMessages from "../context/messageContext";
+import BgEffect from "../static/bgEffect";
 
 const Course = () => {
     const [empty, setEmpty] = useState({
         isEmpty: false,
-        message: '',
+        message: "",
     });
     const [err, setErr] = useState({
         isError: false,
-        message: ''
+        message: "",
     });
     const [isShowVideo, setIsShowVideo] = useState(false);
     const [course, setCourse] = useState();
@@ -21,11 +21,11 @@ const Course = () => {
             window.scrollTo(0, 0);
             setIsShowVideo(true);
         } else {
-            return
+            return;
         }
     }
 
-    const {addMessage} = useMessages()
+    const { addMessage } = useMessages();
 
     async function getCourse() {
         const reqOptions = {
@@ -34,7 +34,7 @@ const Course = () => {
                 Authorization: `Bearer ${localStorage.getItem("token")}`,
             },
         };
-        axios
+        await axios
             .get(
                 `${import.meta.env.VITE_BACKEND_URL}/api/courses/${
                     window.location.pathname.split("/course/")[1]
@@ -55,7 +55,7 @@ const Course = () => {
                     error.response?.statusText === "Unauthorized"
                 ) {
                     addMessage(
-                        'error',
+                        "error",
                         `Error: you must be logged in. please login first`
                     );
                     setErr({
@@ -64,7 +64,7 @@ const Course = () => {
                     });
                 }
                 if (error.response?.status === undefined) {
-                    addMessage('error', `Error: ${error.message}`);
+                    addMessage("error", `Error: ${error.message}`);
                     setErr({
                         isErr: true,
                         message: `${error.message}. please try again later`,
@@ -75,54 +75,18 @@ const Course = () => {
 
     useEffect(() => {
         getCourse();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return (
         <>
-            <div className="course-page">
+            <div className="md:py-[7rem] py-7 md:px-[2rem] px-2">
                 {course ? (
                     <div className="flex flex-col justify-between h-full w-full relative min-h-screen">
                         <div className="w-full">
                             <div className="bg-outer-container smooth clr-text-primary negative-nav-margin posisitve-nav-padding-top">
                                 <div className="px-2 lg:px-4 sm:px-10 py-10 pb-10 space-y-10">
-                                    <div className="rounded-md py-24 px-8 text-slate-100 relative overflow-hidden pb-56 bg-blue-700 shadow-md border border-blue-900">
-                                        <div className="relative z-10 space-y-6">
-                                            <div className="text-3xl font-black">
-                                                {course.title}
-                                            </div>
-                                            <div>{course.discription}</div>
-                                            <div className="flex flex-col sm:flex-row font-smaller text-slate-100 sm:space-y-0 space-y-4 sm:space-x-8 sm:space-x-reverse">
-                                                <div className="flex flex-wrap flex-row lg:space-x-reverse md:space-x-reverse sm:space-x-reverse space-x-reverse space-x-2">
-                                                    <span className="flex-center-both trasnform text-blue-400 "></span>
-                                                    <span className="font-w-bold underline">
-                                                        <span>
-                                                            تاريخ انشاء الكورس
-                                                        </span>
-                                                    </span>
-                                                    <span className="bg-blue-400 px-3 rounded-full opacity-90 text-slate-800">
-                                                        {formatDate(course.createdAt)}
-                                                    </span>
-                                                </div>
-                                                <div className="flex flex-wrap flex-row lg:space-x-reverse md:space-x-reverse sm:space-x-reverse space-x-reverse space-x-2">
-                                                    <span className="flex-center-both trasnform text-blue-400 "></span>
-                                                    <span className="font-w-bold underline">
-                                                        <span>
-                                                            اخر تحديث للكورس
-                                                        </span>
-                                                    </span>
-                                                    <span className="bg-rose-400 px-3 rounded-full opacity-90 text-slate-800">
-                                                        {formatDate(course.updatedAt)}
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className="absolute inset-0 w-full h-full">
-                                            <div className="backgrounIMG w-auto h-full md:w-full opacity-20 relative mr-auto transform ">
-                                                <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent to-blue-900"></div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <BgEffect course={course}></BgEffect>
                                     <div className="px-2 lg:px-4 sm:px-10 relative py-0 space-y-10">
                                         {isShowVideo ? (
                                             <>
@@ -133,7 +97,14 @@ const Course = () => {
                                                 </div>
                                                 <div className="w-full max-w-4xl mx-auto rounded-2xl shadow-large overflow-hidden border border-secondary-container smooth clr-text-primary">
                                                     <video
-                                                        src={`${import.meta.env.VITE_BACKEND_URL}${course.courseVideo.data[0].attributes.url}`}
+                                                        src={`${
+                                                            import.meta.env
+                                                                .VITE_BACKEND_URL
+                                                        }${
+                                                            course.courseVideo
+                                                                .data[0]
+                                                                .attributes.url
+                                                        }`}
                                                         controls={true}
                                                     ></video>
                                                 </div>
@@ -145,7 +116,17 @@ const Course = () => {
                                                         <div className="p-4 space-y-8">
                                                             <div className="overflow-hidden rounded-md">
                                                                 <img
-                                                                    src={`${import.meta.env.VITE_BACKEND_URL}${course.courseCoverIMG.data.attributes.url}`}
+                                                                    src={`${
+                                                                        import.meta
+                                                                            .env
+                                                                            .VITE_BACKEND_URL
+                                                                    }${
+                                                                        course
+                                                                            .courseCoverIMG
+                                                                            .data
+                                                                            .attributes
+                                                                            .url
+                                                                    }`}
                                                                     alt="img"
                                                                 ></img>
                                                             </div>
@@ -160,7 +141,17 @@ const Course = () => {
                                                     <div className="space-y-5">
                                                         <div className="rounded-2xl shadow-2xl overflow-hidden">
                                                             <img
-                                                                src={`${import.meta.env.VITE_BACKEND_URL}${course.courseCoverIMG.data.attributes.url}`}
+                                                                src={`${
+                                                                    import.meta
+                                                                        .env
+                                                                        .VITE_BACKEND_URL
+                                                                }${
+                                                                    course
+                                                                        .courseCoverIMG
+                                                                        .data
+                                                                        .attributes
+                                                                        .url
+                                                                }`}
                                                                 alt="img"
                                                             ></img>
                                                         </div>
@@ -185,7 +176,7 @@ const Course = () => {
                                             </div>
                                         )}
                                     </div>
-                                    <div className="rounded-2xl shadow-2xl w-full relative overflow-hidden bg-gray-900 smooth">
+                                    <div className="rounded-2xl shadow-2xl w-full relative overflow-hidden bg-gray-200 dark:bg-gray-900 smooth">
                                         <div className="py-10 px-5 sm:px-10">
                                             <div className="smooth space-y-6">
                                                 <div className="font-bold clr-text-primary py-5 text-5xl">
@@ -196,30 +187,31 @@ const Course = () => {
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className="bg-gray-900 rounded-md px-5 py-5 smooth shadow-xl space-y-4">
-                                            <div className="collapses">
-                                                <div
-                                                    tabIndex={0}
-                                                    className="collapse collapse-arrow border-base-300 bg-base-200 border"
-                                                >
-                                                    <div className="collapse-title text-xl font-medium">
-                                                        <div className="flex justify-between items-center">
-                                                            <span>
-                                                                الدرس الاول
-                                                            </span>
-                                                            <button
-                                                                className="self-start border-2 smooth false text-base bg-yellow-500 border-yellow-500 hover:bg-opacity-0 hover:text-yellow-400 text-white rounded-md  px-4 py-2 "
-                                                                onClick={() => showVideo()}
-                                                            >
-                                                                مشاهدة الفيديو
-                                                            </button>
-                                                        </div>
-                                                    </div>
-                                                    <div className="collapse-content">
-                                                        <p>video discription</p>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                        <div className="rounded-md px-5 py-5 shadow-xl space-y-4">
+                                            <Collapse
+                                                onClickFunction={showVideo}
+                                                title={"الدرس الاول"}
+                                                type={"video"}
+                                                info={"لا توجد بيانات"}
+                                            />
+                                            <Collapse
+                                                onClickFunction={showVideo}
+                                                title={"الدرس الاول"}
+                                                type={"exam"}
+                                                info={"لا توجد بيانات"}
+                                            />
+                                            <Collapse
+                                                onClickFunction={showVideo}
+                                                title={"الدرس الاول"}
+                                                type={"homework"}
+                                                info={"لا توجد بيانات"}
+                                            />
+                                            <Collapse
+                                                onClickFunction={showVideo}
+                                                title={"الدرس الاول"}
+                                                type={"pdf"}
+                                                info={"لا توجد بيانات"}
+                                            />
                                         </div>
                                     </div>
                                 </div>
@@ -227,7 +219,11 @@ const Course = () => {
                         </div>
                     </div>
                 ) : (
-                    <StaticCourse err={err} empty={empty} isShowVideo={isShowVideo}/>
+                    <StaticCourse
+                        err={err}
+                        empty={empty}
+                        isShowVideo={isShowVideo}
+                    />
                 )}
             </div>
         </>
@@ -235,3 +231,58 @@ const Course = () => {
 };
 
 export default Course;
+const Collapse = ({ onClickFunction, title, type, info }) => {
+    return (
+        <div className="collapse collapse-arrow bg-base-200">
+            <input type="checkbox" />
+            <div className="collapse-title text-xl font-medium">
+                <div className="flex justify-between items-center sm:px-2">
+                    {type === "video" ? (
+                        <>
+                            <span>{title}</span>
+                            <button
+                                className="z-10 smooth border-2 text-base bg-yellow-500 border-yellow-500 hover:bg-transparent hover:text-yellow-400 text-white rounded-md px-4 py-2"
+                                onClick={() => onClickFunction()}
+                            >
+                                مشاهدة الفيديو
+                            </button>
+                        </>
+                    ) : type === "exam" ? (
+                        <>
+                            <span>{title}</span>
+                            <button
+                                className="z-10 smooth border-2 text-base bg-red-500 border-red-500 hover:bg-transparent hover:text-red-400 text-white rounded-md px-4 py-2"
+                                onClick={() => onClickFunction()}
+                            >
+                                بدء الامتحان
+                            </button>
+                        </>
+                    ) : type === 'homework' ?(
+                        <>
+                            <span>{title}</span>
+                            <button
+                                className="z-10 smooth border-2 text-base bg-emerald-500 border-emerald-500 hover:bg-transparent hover:text-emerald-400 text-white rounded-md px-4 py-2"
+                                onClick={() => onClickFunction()}
+                            >
+                                بدء الواجب
+                            </button>
+                        </>
+                    ) : (
+                        <>
+                            <span>{title}</span>
+                            <button
+                                className="z-10 smooth border-2 text-base bg-blue-500 border-blue-500 hover:bg-transparent hover:text-blue-400 text-white rounded-md px-4 py-2"
+                                onClick={() => onClickFunction()}
+                            >
+                                مشاهدة الملف
+                            </button>
+                        </>
+                    )}
+                </div>
+            </div>
+            <div className="collapse-content">
+                <p>{info}</p>
+            </div>
+        </div>
+    );
+};

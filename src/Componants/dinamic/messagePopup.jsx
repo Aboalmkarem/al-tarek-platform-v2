@@ -1,4 +1,4 @@
-import useMessages from "./context/messageContext";
+import useMessages from "../context/messageContext";
 
 
 const MessagePopup = () => {

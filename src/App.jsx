@@ -1,19 +1,20 @@
 import "./App.css";
 import useLocalStorage from "use-local-storage";
-import Navbar from "./Componants/navbar";
-import LandingPage from "./Componants/landingPage";
-import Authentication from "./Componants/authentcation";
+import Navbar from "./Componants/dinamic/navbar";
+import HomePage from "./Componants/pages/homePage";
+import Authentication from "./Componants/pages/authentcation";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Footer from "./Componants/footer";
-import Courses from "./Componants/courses";
-import ScrollToTop from "./Componants/ScrollToTop";
-import Profile from "./Componants/profile";
-import User from "./Componants/profileFiles/user";
-import FavCourses from "./Componants/profileFiles/favCourses";
-import Course from "./Componants/course";
-import MessagePopup from "./Componants/messagePopup";
+import Footer from "./Componants/static/footer";
+import Courses from "./Componants/pages/courses";
+import ScrollToTop from "./Componants/utils/ScrollToTop";
+import Profile from "./Componants/pages/profile";
+import User from "./Componants/pages/profilePages/user";
+import FavCourses from "./Componants/pages/profilePages/favCourses";
+import Course from "./Componants/pages/course";
+import MessagePopup from "./Componants/dinamic/messagePopup";
 import {MessageContext} from "./Componants/context/messageContext";
 import { createRef, useState } from "react";
+import NotFound from "./Componants/pages/notFound";
 function App() {
 
     const [messages, setMessages] = useState([]);
@@ -67,13 +68,13 @@ function App() {
     ).matches;
     const [isDark, setIsDark] = useLocalStorage("isDark", preference);
     return (
-        <div className="app" data-theme={isDark ? "dark" : "light"}>
+        <div className={`flex flex-col bg-white dark:bg-[#080C14] transition ease-in-out duration-150 text-dark dark:text-white ${isDark ? "app dark" : "app"}`} data-theme={isDark ? "dark" : "light"}>
             <BrowserRouter>
                 <ScrollToTop />
                 <MessageContext.Provider value={messageValues}>
                     <MessagePopup />
                     <Navbar
-                        isChecked={isDark}
+                        isChecked={!isDark}
                         handleChange={() => {
                             setIsDark(!isDark);
                         }}
@@ -82,15 +83,15 @@ function App() {
                         <Route
                             index
                             path="/al-tarek-platform-v2"
-                            element={<LandingPage />}
+                            element={<HomePage />}
                         />
                         <Route
-                            path="/al-tarek-platform-v2/authentcation/login"
-                            element={<Authentication authToggle={false} />}
+                            path="/al-tarek-platform-v2/authentication/login"
+                            element={<Authentication authToggle={false}/>}
                         />
                         <Route
-                            path="/al-tarek-platform-v2/authentcation/signup"
-                            element={<Authentication authToggle={true} />}
+                            path="/al-tarek-platform-v2/authentication/register"
+                            element={<Authentication authToggle={true}/>}
                         />
                         <Route
                             path="/al-tarek-platform-v2/courses/:categoryName"
@@ -110,6 +111,7 @@ function App() {
                                 element={<FavCourses></FavCourses>}
                             ></Route>
                         </Route>
+                        <Route path="*" element={<NotFound />} />
                     </Routes>
                     <Footer></Footer>
                 </MessageContext.Provider>
